@@ -4,7 +4,7 @@ Download the [App Store version](https://apps.apple.com/us/app/app-maker-profess
 ## An Extendable IDE for iOS / iPadOS
 > Learn about customization with [Plugins](#-plugins)  
 
-
+![logo](https://user-images.githubusercontent.com/8505851/169553849-063cbcf3-eba0-4ef4-99db-d5bf7f18a4ae.png)
 
 ## Welcome to App Maker Professional
 
@@ -12,10 +12,7 @@ App Maker is an IDE designed to run on iPhones and iPads. It's built mostly in [
 
 Although initially intended to be an IDE specifically for iOS development with SwiftUI, App Maker is now capable of working with more programming languages and frameworks. The [core module](https://github.com/App-Maker-Software/AppMakerProfessional/tree/main/Plugins/com.appmakerios/AppMakerCore) provides public Swift protocols so that 3rd parties can add new build systems, source control systems, project templates, and more!
 
-- [App Maker Professional](#app-maker-professional)
- - [An Extendable IDE for iOS / iPadOS](#an-extendable-ide-for-ios--ipados)
- - [Wecome to App Maker Professional](#wecome-to-app-maker-professional)
- - [Main Features](#main-features)
+### [ - Main Features](#main-features)
   - [⭐️ Live Simulator](#️-live-simulator)
   - [📱 iOS Development](#-ios-development)
   - [🎮 Game Development](#-game-development)
@@ -24,12 +21,13 @@ Although initially intended to be an IDE specifically for iOS development with S
   - [🔌 Plugins](#-plugins)
   - [💻 Partially Compile Projects](#-partially-compile-projects)
   - [🔥 Multiplayer Server](#-multiplayer-server)
- - [Getting Started](#getting-started)
+### [ - Getting Started](#getting-started)
+  - [Sideloading with Altstore](#sideloading-with-altstore)
   - [Custom Build](#custom-build)
   - [App Store](#app-store)
- - [Architecture](#architecture)
- - [Licensing](#licensing)
- - [Contributing to App Maker Professional](#contributing-to-app-maker-professional)
+### [ - Architecture](#architecture)
+### [ - Licensing](#licensing)
+### [ - Contributing to App Maker Professional](#contributing-to-app-maker-professional)
 
 ## Main Features
 
@@ -75,7 +73,7 @@ Download the latest IPA on the releases page.
 
 https://github.com/App-Maker-Software/AppMakerProfessional/releases
 
-Then follow instructions with https://altstore.io on how to sideload the iOS app to your device. 
+Then follow instructions on https://altstore.io 
 
 ### Custom Build
 
