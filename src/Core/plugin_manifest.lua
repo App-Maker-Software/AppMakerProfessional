@@ -45,7 +45,7 @@ local appMakerCoreImplementation = {
     xcFrameworks = {
         {
             active = flags.PROD and (not flags.STAGING) and (not flags.APPSTORE),
-            url = getXCFrameworkURL("AppMakerCore.xcframework"),
+            url = getXCFrameworkURL("AppMakerCore.xcframework.zip"),
         },
         {
             active = flags.STAGING,
@@ -80,7 +80,7 @@ local appMakerCompanionCoreImplementation = {
     xcFrameworks = {
         {
             active = flags.PROD and (not flags.STAGING) and (not flags.APPSTORE),
-            url = getXCFrameworkURL("AppMakerCompanionCore.xcframework"),
+            url = getXCFrameworkURL("AppMakerCompanionCore.xcframework.zip"),
         },
         {
             active = flags.STAGING,
