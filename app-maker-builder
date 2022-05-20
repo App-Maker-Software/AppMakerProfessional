@@ -1,0 +1,7 @@
+mkdir -p ReleaseAssets
+if ! [ -f ReleaseAssets/app-maker-builder ]; then
+  APP_MAKER_VERSION="0.9"
+  echo "Downloading $APP_MAKER_VERSION"
+  curl -o ReleaseAssets/app-maker-builder "https://github.com/App-Maker-Software/AppMakerProfessional/releases/download/$APP_MAKER_VERSION/app-maker-builder"
+fi
+./ReleaseAssets/app-maker-builder $1 $2 $3 $4 $5 $6 $7 $8 $9
