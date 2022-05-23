@@ -180,6 +180,6 @@ manifest =
         --
         -- If you wish to add #import <Example/Example.h> to the bridging header.
         --
-        -- bridgingHeaderImport = "<Example/Example.h>",
+        bridgingHeaderImport = "\"CoronaCards/CoronaCards.h\"",
     },
 }
