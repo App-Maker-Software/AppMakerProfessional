@@ -60,7 +60,6 @@ manifest =
     dependencies = {},
     supportedTargets = {
         "iOS",
-        "iOSSim",
     },
     supportedRuntimes = {
         "mainApp",

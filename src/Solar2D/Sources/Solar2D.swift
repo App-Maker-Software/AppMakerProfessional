@@ -11,6 +11,7 @@ import AppMakerCompanionCore
 import SwiftUI
 
 func solar2d_main() {
+    
     // Install sandbox and runner
     solar2DRunner.licenseInformation = [
         "Solar2D (c) Solar2D, MIT license" // https://github.com/coronalabs/corona/
@@ -54,7 +55,7 @@ func solar2d_main() {
                 return aFileOrFolder.lastPathComponent.lowercased() == "main.lua"
             }
         },
-        priority: 1,
+        priority: 2,
         projectFileViewersSupports: ["Project Files"]
     )
     try! solar2DProjectType.install()
@@ -78,10 +79,10 @@ func solar2d_main() {
                                         relativeFolderPath: "",
                                         fileName: "main.lua",
                                         contents: """
-                                            //
-                                            // main.lua
-                                            // PROJECT_NAME
-                                            //
+                                            --
+                                            -- main.lua
+                                            -- PROJECT_NAME
+                                            --
                                             
                                             local myText = display.newText( "Hello World from PROJECT_NAME!", 100, 200, native.systemFont, 16 )
                                             myText:setFillColor( 1, 0, 0 )
@@ -120,21 +121,40 @@ private let solar2DRunner: AppMakerBuildProductRunner = AppMakerBuildProductRunn
 final class Solar2DBuildSystem: AppMakerBuildSystemImplementation {
     
     let entryPath: RawProjectFilePath
+    let entryPathUrl: URL
     
-    init(entryPath: RawProjectFilePath) {
+    init(entryPath: RawProjectFilePath, projectRootFolderUrl: URL) {
         self.entryPath = entryPath
+        self.entryPathUrl = entryPath.asLocalURL(withStartingUrl: projectRootFolderUrl)!
     }
     
     func buildProductsOnStartup() -> [(buildProductCreator: BuildProductCreator, recommendedRunnerName: String?)] {
         return [
             (
-                buildProductCreator: .simpleOfflineBuildProduct(
-                    name: "main",
-                    path: entryPath
+                buildProductCreator: .generatedHiddenFolderOfflineBuildProduct(
+                    name: "main"
                 ),
                 recommendedRunnerName: solar2dScriptRunnerName
             )
         ]
+    }
+    
+    
+    
+    func doBuild(for product: AnyBuildProduct) async -> Result<Void, Error> {
+        let product = product as! GeneratedHiddenFolderOfflineBuildProduct
+        try? FileManager.default.removeItem(at: product.buildProductPath)
+        let coronaSourceFolder = self.entryPathUrl.deletingLastPathComponent()
+        try? FileManager.default.createDirectory(at: product.buildProductPath.deletingLastPathComponent(), withIntermediateDirectories: true)
+        do {
+            try FileManager.default.copyItem(
+                at: coronaSourceFolder,
+                to: product.buildProductPath
+            )
+            return .success(Void())
+        } catch {
+            return .failure(error)
+        }
     }
     
     

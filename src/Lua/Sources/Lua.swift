@@ -169,7 +169,7 @@ final class LuaBuildSystem: AppMakerBuildSystemImplementation {
     
     let entryPath: RawProjectFilePath
     
-    init(entryPath: RawProjectFilePath) {
+    init(entryPath: RawProjectFilePath, projectRootFolderUrl: URL) {
         self.entryPath = entryPath
     }
     
@@ -183,6 +183,10 @@ final class LuaBuildSystem: AppMakerBuildSystemImplementation {
                 recommendedRunnerName: luaScriptRunnerName
             )
         ]
+    }
+    
+    func doBuild(for product: AnyBuildProduct) async -> Result<Void, Error> {
+        fatalError()
     }
     
     

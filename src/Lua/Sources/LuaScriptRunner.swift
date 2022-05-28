@@ -11,17 +11,18 @@ import AppMakerCompanionCore
 #endif
 
 final class LuaScriptRunner: AppMakerBuildProductRunnerImplementation {
+    var canRender: Bool { false }
+    
     let logger: RunnerLogger
-    let buildProduct: SimpleOfflineBuildProduct
+    let _buildProduct: SimpleOfflineBuildProduct
+    var buildProduct: AnyBuildProduct {
+        self._buildProduct
+    }
     var vm: LuaSwiftBindings.VirtualMachine?
     let sendAction: (BuildProductRunnerAction) -> Void
-    init(
-        logger: RunnerLogger,
-        buildProduct: SimpleOfflineBuildProduct,
-        sendAction: @escaping (BuildProductRunnerAction) -> Void
-    ) {
+    init(logger: RunnerLogger, buildProduct: AnyBuildProduct, sendAction: @escaping (BuildProductRunnerAction) -> Void) {
         self.logger = logger
-        self.buildProduct = buildProduct
+        self._buildProduct = buildProduct as! SimpleOfflineBuildProduct
         self.sendAction = sendAction
     }
     private func log(_ msg: String, addNewLine: Bool = true) {
@@ -52,8 +53,8 @@ final class LuaScriptRunner: AppMakerBuildProductRunnerImplementation {
         }
         vm.globals["sandbox"] = sandboxTable
         // save user code path
-        let executionURL: URL = buildProduct.buildProductPath.deletingLastPathComponent()
-        vm.globals["entryFileName"] = buildProduct.buildProductPath.lastPathComponent
+        let executionURL: URL = _buildProduct.buildProductPath.deletingLastPathComponent()
+        vm.globals["entryFileName"] = _buildProduct.buildProductPath.lastPathComponent
         vm.globals["getSandboxedUrl"] = vm.createUncheckedFunction { [weak self] args in
             if let self = self {
                 if let fileName: String = args.first as? String {
@@ -67,7 +68,7 @@ final class LuaScriptRunner: AppMakerBuildProductRunnerImplementation {
             }
             return .nothing
         }
-        self.log("Running \(buildProduct.buildProductPath.lastPathComponent)")
+        self.log("Running \(_buildProduct.buildProductPath.lastPathComponent)")
         let evalResult = vm.eval(#"""
             local amDoFile
             local env = {
