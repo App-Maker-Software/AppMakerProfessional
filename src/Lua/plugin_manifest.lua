@@ -43,7 +43,7 @@ manifest =
             {
                 name = "LuaSwiftBindings",
                 productName = "LuaSwiftBindings",
-                revision = "60a5ad37c0ddd7a3521be0f6b1ab5b2387e7f802", -- Lua 5.4.4 with suffixed exported symbols to avoid collisions with CoronaCard's embedded Lua interpreter.
+                revision = "4db2cd70167accd33a3b5d68b619b584ab080c70", -- Lua 5.4.4 with suffixed exported symbols to avoid collisions with CoronaCard's embedded Lua interpreter.
                 url = "https://github.com/App-Maker-Software/LuaSwiftBindings.git",
             },
         },
