@@ -2,7 +2,7 @@
 -- For more information on plugin_manifest.lua, see:
 -- https://docs.appmakerios.com/#/plugin-manifest
 --
-local appMakerCoreVersion = "0.9.1"
+local appMakerCoreVersion = "0.9.2"
 
 local function getXCFrameworkURL(filename)
     local repoOwner = "App-Maker-Software"
