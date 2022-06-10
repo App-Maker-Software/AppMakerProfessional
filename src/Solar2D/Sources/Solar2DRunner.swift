@@ -18,6 +18,8 @@ final class Solar2DRunner: AppMakerBuildProductRunnerImplementation {
     var canRender: Bool {
         true
     }
+    var isSuspended = true
+    var allDelegates: [WeakSolar2DSwiftUIViewDelegate] = []
     init(
         logger: RunnerLogger,
         buildProduct: AnyBuildProduct,
@@ -35,18 +37,38 @@ final class Solar2DRunner: AppMakerBuildProductRunnerImplementation {
         }
     }
     func resume() {
-        self.sendAction(.render(AnyView(
-            SafeSolar2DSwiftUIView(
-                coronaSdkFilePath: self._buildProduct.buildProductPath.path
+        self.isSuspended = false
+        self.sendAction(.render(
+            .init(
+                makeSimulatorRendererDelegate: {
+                    Solar2DSwiftUIViewDelegate(solar2DRunner: self, instanceId: $0)
+                },
+                makeSimulatorRenderer: {
+                    SafeSolar2DSwiftUIView(
+                        delegate: $0 as! Solar2DSwiftUIViewDelegate
+                    )
+                }
             )
-        )))
+        ))
     }
     func suspend() {
-        
+        self.isSuspended = true
+        for delegate in allDelegates {
+            if let delegate: Solar2DSwiftUIViewDelegate = delegate.value, delegate.isFocused {
+                delegate.suspend()
+            }
+        }
     }
     
     func destroyRunner() async {
-        
+        self.suspend()
+    }
+    
+    final class WeakSolar2DSwiftUIViewDelegate {
+        weak var value: Solar2DSwiftUIViewDelegate?
+        init(delegate: Solar2DSwiftUIViewDelegate) {
+            self.value = delegate
+        }
     }
 }
 

@@ -57,7 +57,12 @@ manifest =
     name = "Solar2D",
     authorId = "com.appmakerios",
     version = "1.0.0",
-    dependencies = {},
+    dependencies = {
+        {
+            name = "Lua",
+            authorId = "com.appmakerios",
+        },
+    },
     supportedTargets = {
         "iOS",
     },
