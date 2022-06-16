@@ -2,7 +2,8 @@
 -- For more information on plugin_manifest.lua, see:
 -- https://docs.appmakerios.com/#/plugin-manifest
 --
-local appMakerCoreVersion = "0.9.2"
+
+local appMakerCoreVersion = "0.9.3"
 
 local function getXCFrameworkURL(filename)
     local repoOwner = "App-Maker-Software"
@@ -26,7 +27,7 @@ local appMakerCoreImplementation = {
     --
     swiftPackages = {
         {
-            active = (flags.DEV and (not flags.STAGING)) or flags.APPSTORE,
+            active = flags.DEV and (not flags.STAGING),
             name = "AppMakerPrivate",
             productName = "AppMakerCore",
             path = "../AppMakerPrivate",
