@@ -1,5 +1,5 @@
 mkdir -p ReleaseAssets
-APP_MAKER_VERSION="0.9.2"
+APP_MAKER_VERSION="0.9.3"
 current_version=$(<ReleaseAssets/app-maker-builder-version)
 if [ ! -f ReleaseAssets/app-maker-builder ] || [ ! "$APP_MAKER_VERSION" == "$current_version" ]; then
   echo "Downloading $APP_MAKER_VERSION"
