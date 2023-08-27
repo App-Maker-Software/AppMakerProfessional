@@ -3,7 +3,7 @@ Download the [App Store version](https://apps.apple.com/us/app/app-maker-profess
 
 ## Announcement 🔔
 
-Hey it's me, [Joe](https://github.com/joehinkle11), I'm taking a hiatus from App Maker until December. Thanks to everyone who has tested the app and given me feedback! I can't wait to return to this project.
+Hey it's me, [Joe](https://github.com/joehinkle11), I've retired App Maker. I enjoyed the learning experience of building this app. Thanks to everyone who has tested the app and given me feedback! If you wish to keep using it, you can attempt to use this version on GitHub (I don't recommend) or use the version on the App Store!
 
 I'll post to the [project Twitter account](https://twitter.com/AppMakeriOS) when I resume work on it, so give it a follow if you'd like to be notified.
 
